@@ -3,4 +3,4 @@ project(DataStructure_ex3)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DataStructure_ex3 main.cpp)
+add_executable(DataStructure_ex3 main.cpp Trie.h Trie.cpp)
