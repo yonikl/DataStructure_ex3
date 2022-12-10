@@ -3,11 +3,12 @@
 //
 
 #include "Trie.h"
+#include <list>
 
 TrieNode *getNode()
 {
     TrieNode *pNode =  new TrieNode;
-
+    pNode->parent = nullptr;
     pNode->isWordEnd = false;
 
     for (int i = 0; i < ALPHABET_SIZE; i++)
@@ -28,13 +29,13 @@ TrieNode* search(TrieNode *root, string key)
         it = it->children[returnIndex(key[i])];
     }
 
-    if(it->isWordEnd)return it;
-    return nullptr;
+    return it;
 }
 
 bool searchT(TrieNode *root, string key)
 {
-    return search(root,key) != nullptr;
+    auto result = search(root,key);
+    return result && result->isWordEnd;
 }
 bool insertT(TrieNode *root, string key)
 {
@@ -44,11 +45,12 @@ bool insertT(TrieNode *root, string key)
 
     for (int i = 0; i < key.length(); i++)
     {
-        if (!pRoot->children[returnIndex(key[i])]) {
-            pRoot->children[returnIndex(key[i])] = getNode();
-            pRoot->children[returnIndex(key[i])]->parent = pRoot;
+        int j = returnIndex(key[i]);
+        if (!pRoot->children[j]) {
+            pRoot->children[j] = getNode();
+            pRoot->children[j]->parent = pRoot;
         }
-        pRoot = pRoot->children[returnIndex(key[i])];
+        pRoot = pRoot->children[j];
     }
 
     // mark last node as leaf
@@ -58,8 +60,8 @@ bool insertT(TrieNode *root, string key)
 
 bool delT(TrieNode *root, string key)
 {
-    auto node = search(root, key);
-    if(!node) return false;
+    if(!searchT(root, key)) return false;
+    auto node = search(root,key);
     node->isWordEnd = false;
     if(doesHaveChildren(node))return true;
     while (node != root && !doesHaveChildren(node)){
@@ -72,8 +74,45 @@ bool delT(TrieNode *root, string key)
 
 }
 
+void printT(TrieNode *t, int level)
+{
+    if(!doesHaveChildren(t))
+        return;
+    for (int i = 0; i < ALPHABET_SIZE; i++) {
+        if (t->children[i] != nullptr) {//check if the list not empty
+            for (int j = level ; j > 0; j--) {//print the spaces
+                cout << "   ";
+            }
+            cout << (char)(i + 'a') << ":" << endl;
+            printT(&(*t->children[i]), level + 1);
+        }
+    }
+}
+
 bool doesHaveChildren(TrieNode* node){
     for (auto & i : node->children)
         if (i != nullptr) return true;
     return false;
+}
+
+int printAutoSuggestionsT(TrieNode* root, string query)
+{
+    return printAutoSuggestions(search(root, query), query);
+}
+
+int printAutoSuggestions(TrieNode *node, string query){
+    int counter = 0;
+    if(!node) return 0;
+    if(node->isWordEnd){
+        counter += 1;
+        cout << query << endl;
+    }
+    for (int i = 0; i < ALPHABET_SIZE; i++){
+        if (node->children[i] != nullptr){
+            auto temp = query;
+            temp.push_back((char)(i + 'a'));
+            counter += printAutoSuggestions(node->children[i], temp);
+        }
+    }
+    return counter;
 }

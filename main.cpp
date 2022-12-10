@@ -31,7 +31,7 @@ int main()
 		case 'a':
 			cout << "Enter a word to insert " << endl;
 			cin >> wrd;
-			if (tr.insert(wrd) == false)
+			if (!tr.insert(wrd))
 				cout << "ERROR\n";
 			break;
 		case 'd':

@@ -43,6 +43,7 @@ int printAutoSuggestionsT(TrieNode* root, string query);
 void printT(TrieNode *t, int level);
 int returnIndex(char key);
 bool doesHaveChildren(TrieNode* node);
+int printAutoSuggestions(TrieNode *node, string query);
 
 
 class Trie
