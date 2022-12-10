@@ -17,20 +17,25 @@ TrieNode *getNode()
 }
 int returnIndex(char key) {return (int)key - (int)'a';}
 
-bool searchT(TrieNode *root, string key)
+TrieNode* search(TrieNode *root, string key)
 {
     auto it = root;
     for (int i = 0; i < key.length(); i++)
     {
         if (!it->children[returnIndex(key[i])])
-            return false;
+            return nullptr;
 
         it = it->children[returnIndex(key[i])];
     }
 
-    return (it->isWordEnd);
+    if(it->isWordEnd)return it;
+    return nullptr;
 }
 
+bool searchT(TrieNode *root, string key)
+{
+    return search(root,key) != nullptr;
+}
 bool insertT(TrieNode *root, string key)
 {
     if(searchT(root,key))
@@ -49,4 +54,8 @@ bool insertT(TrieNode *root, string key)
     // mark last node as leaf
     pRoot->isWordEnd = true;
     return true;
+}
+bool delT(TrieNode *root, string key)
+{
+
 }

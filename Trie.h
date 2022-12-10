@@ -34,6 +34,7 @@ struct TrieNode
 TrieNode *getNode();
 bool isLastNode(TrieNode* root);
 bool insertT(TrieNode *root, string key);
+TrieNode* search(TrieNode* root,string key);
 bool delT(TrieNode *root, string key);
 bool delR(TrieNode *prev, TrieNode* root, string key, int ind);
 bool searchT(TrieNode *root, string key);
