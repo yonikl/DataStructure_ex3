@@ -6,7 +6,7 @@
 using namespace std;
 
 
-void main()
+int main()
 {
 
 	char ch;
@@ -61,5 +61,5 @@ void main()
 		default: cout << "ERROR " << endl;  break;
 		}//switch
 	} while (ch != 'e');
-
+    return 0;
 }

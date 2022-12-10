@@ -10,6 +10,7 @@
 // using Trie data ure.
 #include <iostream>
 #include <string>
+#include <algorithm>
 using namespace std;
 
 // Alphabet size (# of symbols)
@@ -23,14 +24,14 @@ using namespace std;
 struct TrieNode
 {
     TrieNode *children[ALPHABET_SIZE];
-
+    TrieNode* parent;
     // isWordEnd is true if the node represents
     // end of a word
     bool isWordEnd;
 };
 
 
-TrieNode *getNode(void);
+TrieNode *getNode();
 bool isLastNode(TrieNode* root);
 bool insertT(TrieNode *root, string key);
 bool delT(TrieNode *root, string key);
@@ -39,7 +40,7 @@ bool searchT(TrieNode *root, string key);
 void suggestionsRec(TrieNode* root, string currPrefix);
 int printAutoSuggestionsT(TrieNode* root, string query);
 void printT(TrieNode *t, int level);
-
+int returnIndex(char key);
 
 
 class Trie
@@ -53,10 +54,7 @@ public:
     int printAutoSuggestions(string wrd) { return printAutoSuggestionsT(root, wrd); }
     bool search(string key) { return searchT(root, key); }
     void printTrie() { printT(root, 0); }
-
 };
-
-
 
 
 #endif //DATASTRUCTURE_EX3_TRIE_H
