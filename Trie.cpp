@@ -11,7 +11,7 @@ TrieNode *getNode()
     pNode->isWordEnd = false;
 
     for (int i = 0; i < ALPHABET_SIZE; i++)
-        pNode->children[i] = NULL;
+        pNode->children[i] = nullptr;
 
     return pNode;
 }
@@ -55,7 +55,25 @@ bool insertT(TrieNode *root, string key)
     pRoot->isWordEnd = true;
     return true;
 }
+
 bool delT(TrieNode *root, string key)
 {
+    auto node = search(root, key);
+    if(!node) return false;
+    node->isWordEnd = false;
+    if(doesHaveChildren(node))return true;
+    while (node != root && !doesHaveChildren(node)){
+        node = node->parent;
+        delete node->children[returnIndex(key.back())];
+        node->children[returnIndex(key.back())] = nullptr;
+        key.pop_back();
+    }
+    return true;
 
+}
+
+bool doesHaveChildren(TrieNode* node){
+    for (auto & i : node->children)
+        if (i != nullptr) return true;
+    return false;
 }
