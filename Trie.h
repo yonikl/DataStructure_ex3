@@ -1,5 +1,6 @@
 //
-// Created by 97253 on 09/12/2022.
+//class Trie crete new Trie tree and his function
+//insert,remove,print,looking for Suggestions and search
 //
 
 #ifndef DATASTRUCTURE_EX3_TRIE_H
@@ -16,10 +17,6 @@ using namespace std;
 // Alphabet size (# of symbols)
 #define ALPHABET_SIZE (26)
 
-// Converts key current character into index
-// use only 'a' through 'z' and lower case
-#define CHAR_TO_INDEX(c) ((int)c - (int)'a')
-
 // trie node
 struct TrieNode
 {
@@ -31,19 +28,16 @@ struct TrieNode
 };
 
 
-TrieNode *getNode();
-bool isLastNode(TrieNode* root);
-bool insertT(TrieNode *root, string key);
-TrieNode* search(TrieNode* root,string key);
-bool delT(TrieNode *root, string key);
-bool delR(TrieNode *prev, TrieNode* root, string key, int ind);
-bool searchT(TrieNode *root, string key);
-void suggestionsRec(TrieNode* root, string currPrefix);
-int printAutoSuggestionsT(TrieNode* root, string query);
-void printT(TrieNode *t, int level);
-int returnIndex(char key);
-bool doesHaveChildren(TrieNode* node);
-int printAutoSuggestions(TrieNode *node, string query);
+TrieNode *getNode();//get pointers in the size of ALPHABET
+bool insertT(TrieNode *root, string key);//insert word to the tree
+TrieNode* search(TrieNode* root,string key);//Return pointer to the last character in the word
+bool delT(TrieNode *root, string key);//delete word from the tree
+bool searchT(TrieNode *root, string key);//return true if the word exist in the tree if not return false
+int printAutoSuggestionsT(TrieNode* root, string query);//print all the suggestions to the query
+int printAutoSuggestions(TrieNode *node, string query);//Help function to print all suggestion
+void printT(TrieNode *t, int level);//print all the tree
+int returnIndex(char key);//get cher and return index in the array
+bool doesHaveChildren(TrieNode* node);//check if the node have children
 
 
 class Trie
@@ -60,4 +54,4 @@ public:
 };
 
 
-#endif //DATASTRUCTURE_EX3_TRIE_H
+#endif

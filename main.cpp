@@ -1,5 +1,10 @@
+/*
+Name: Raz Leibovitch
+ Id:209521863
+ Name: Yonatan Klein
+ Id: 322961764
+ */
 #include <iostream>
-#include <list>
 #include <string>
 #include "Trie.h"
 
@@ -28,18 +33,18 @@ int main()
 
 		switch (ch)
 		{
-		case 'a':
+		case 'a'://inset new word to the tree
 			cout << "Enter a word to insert " << endl;
 			cin >> wrd;
 			if (!tr.insert(wrd))
 				cout << "ERROR\n";
 			break;
-		case 'd':
+		case 'd'://delete word from the tree
 			cout << "Enter a word to del " << endl;
 			cin >> wrd;
-			if (!tr.delW(wrd)) cout << "ERROR\n";
+			if (!tr.delW(wrd)) cout << "ERROR\n";//if the word dose not exists
 			break;
-		case 's':
+		case 's'://search word in the tree
 			cout << "Enter a word to search " << endl;
 			cin >> wrd;
 			if (tr.search(wrd))
@@ -48,16 +53,16 @@ int main()
 				cout << "does not exist\n";
 			break;
 
-		case 'c':
+		case 'c'://print all the suggestion to word in the tree
 			cout << "Enter a prefix to complete " << endl;
 			cin >> wrd;
 			comp = tr.printAutoSuggestions(wrd);
 
-			if (comp == 0)
+			if (comp == 0)//if the word not in the tree
 				cout << "No string exist with this prefix\n";
 			break;
-		case 'p': tr.printTrie(); break;
-		case 'e':cout << "bye " << endl; break;
+		case 'p': tr.printTrie(); break;//print all the tree
+		case 'e':cout << "bye " << endl; break;//finish
 		default: cout << "ERROR " << endl;  break;
 		}//switch
 	} while (ch != 'e');
