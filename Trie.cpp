@@ -4,7 +4,7 @@
 
 #include "Trie.h"
 #include <list>
-
+// function to create new Node with all the children in nullptr state
 TrieNode *getNode()
 {
     TrieNode *pNode =  new TrieNode;
@@ -16,6 +16,7 @@ TrieNode *getNode()
 
     return pNode;
 }
+// convert char into index by the place in the alphabet
 int returnIndex(char key) {return (int)key - (int)'a';}
 
 TrieNode* search(TrieNode *root, string key)
