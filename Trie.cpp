@@ -3,6 +3,7 @@
 //
 
 #include "Trie.h"
+#include <list>
 
 TrieNode *getNode()
 {
