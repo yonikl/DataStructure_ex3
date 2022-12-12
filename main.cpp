@@ -68,3 +68,54 @@ int main()
 	} while (ch != 'e');
     return 0;
 }
+/*
+TRIE PROGRAM
+
+Choose one of the following
+a: add a new word
+d: delete an word
+s: check if an word exists
+c: complete the possible word name
+p: print trie
+e: exit
+a
+Enter a word to insert
+abcd
+a
+Enter a word to insert
+abbd
+a
+Enter a word to insert
+abxd
+p
+a:
+   b:
+      b:
+         d:
+      c:
+         d:
+      x:
+         d:
+d
+Enter a word to del
+abbd
+p
+a:
+   b:
+      c:
+         d:
+      x:
+         d:
+s
+Enter a word to search
+abcd
+exists
+c
+Enter a prefix to complete
+ab
+abcd
+abxd
+e
+bye
+
+ */

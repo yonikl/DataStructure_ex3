@@ -38,7 +38,7 @@ int printAutoSuggestions(TrieNode *node, string query);//Help function to print 
 void printT(TrieNode *t, int level);//print all the tree
 int returnIndex(char key);//get cher and return index in the array
 bool doesHaveChildren(TrieNode* node);//check if the node have children
-
+void removeAll(TrieNode* root);//delete all the tree
 
 class Trie
 {
@@ -46,6 +46,7 @@ class Trie
 
 public:
     Trie() { root = getNode(); }
+    ~Trie(){ removeAll(root);}
     bool insert(string wrd) { return insertT(root, wrd); }
     bool delW(string wrd) { return delT(root, wrd); }
     int printAutoSuggestions(string wrd) { return printAutoSuggestionsT(root, wrd); }

@@ -1,9 +1,8 @@
 //
-// Created by 97253 on 09/12/2022.
+//cpp file implement function for Trie tree
 //
 
 #include "Trie.h"
-#include <list>
 
 TrieNode *getNode()
 {
@@ -122,4 +121,15 @@ int printAutoSuggestions(TrieNode *node, string query){
         }
     }
     return counter;
+}
+//delete the all tree
+void removeAll(TrieNode* root)
+{
+    if (!doesHaveChildren(root))
+        delete* root->children;
+    for (int i = 0; i < ALPHABET_SIZE; i++) {
+        if (root->children[i] != nullptr) {//check if the list not empty
+            removeAll(root->children[i]);
+        }
+    }
 }
