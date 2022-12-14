@@ -22,8 +22,8 @@ int main()
 	cout << "\nTRIE PROGRAM" << endl;
 	cout << "\nChoose one of the following" << endl;
 	cout << "a: add a new word" << endl;
-	cout << "d: delete an word" << endl;
-	cout << "s: check if an word exists " << endl;
+	cout << "d: delete a word" << endl;
+	cout << "s: check if a word exists " << endl;
 	cout << "c: complete the possible word name " << endl;
 	cout << "p: print trie" << endl;
 	cout << "e: exit " << endl;
