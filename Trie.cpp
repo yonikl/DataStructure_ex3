@@ -69,7 +69,7 @@ bool delT(TrieNode *root, string key)
     auto node = search(root,key); // go to the end of the key
     node->isWordEnd = false;
     if(doesHaveChildren(node))return true; // if this node have another path through
-    while (node != root && !doesHaveChildren(node)){ // go up and delete nodes until coming to root or the node have another path through
+    while (node != root && !doesHaveChildren(node) && !node->isWordEnd ){ // go up and delete nodes until coming to root or the node have another path through
         node = node->parent;
         delete node->children[returnIndex(key.back())];
         node->children[returnIndex(key.back())] = nullptr;
